@@ -12,17 +12,16 @@
 using namespace std;
 
 class Object : public QGraphicsItem {
-private:
+protected:
     int size;
     QPoint center;
     int refl, gamma ,z;
     QColor color;
 public:
     Object();
-    QRectF boundingRect() const;
-    void set_values(int nsize, QPoint ncenter);
-    void change_colour(QColor new_color);
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void setValues(int nsize, QPoint ncenter);
+    void changeColour(QColor new_color);
+    //void mousePressEvent(QGraphicsSceneMouseEvent *event);
 };
 
 
@@ -32,6 +31,7 @@ private:
 public:
    // Cube(int size, QPoint center);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QRectF boundingRect() const;
 };
 
 

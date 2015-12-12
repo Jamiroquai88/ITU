@@ -18,10 +18,10 @@ MainWindow::MainWindow(QWidget *parent, QApplication *app) :
     m_pimageScene = new QGraphicsScene();
 
     //QPixmap image(":/imgs/new.jpg");
-    QPoint point(10,10);
+    QPoint point(100, 100);
     //objects.push_back(new Cube(20,point));
     cube = new Cube();
-    cube->set_values(50,point);
+    cube->setValues(20, point);
 
     m_pimageScene->addItem(cube);
 

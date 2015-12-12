@@ -27,5 +27,4 @@ FORMS    += mainwindow.ui \
 OTHER_FILES += \
     new.jpg
 
-RESOURCES += \
-    imgs.qrc
+RESOURCES +=
