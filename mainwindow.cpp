@@ -10,18 +10,26 @@ MainWindow::MainWindow(QWidget *parent, QApplication *app) :
 {
     ui->setupUi(this);
     QMainWindow::setWindowTitle("Ray Tracer");
-    this->setStyleSheet("background-color: #333333;");
+    this->setStyleSheet("background-color: #393939;");
 
     m_prenderedWin = new RenderedWindow;
 
     m_prayTracer = new QProcess(this);
     m_pimageScene = new QGraphicsScene();
 
-    QPixmap image("./basic.png");
+    //QPixmap image(":/imgs/new.jpg");
+    QPoint point(10,10);
+    //objects.push_back(new Cube(20,point));
+    cube = new Cube();
+    cube->set_values(50,point);
 
-    m_pimageScene->addPixmap(image);
+    m_pimageScene->addItem(cube);
+
+
     ui->graphicsView->setScene(m_pimageScene);
-    //ui->graphicsView->fitInView(m_pimageScene->itemsBoundingRect() ,Qt::KeepAspectRatio);
+    ui->graphicsView->fitInView(m_pimageScene->itemsBoundingRect() ,Qt::KeepAspectRatio);
+
+   // ui->graphicsView->show();
     QDir *dir = new QDir;
     m_workDir = dir->currentPath();
 
@@ -46,6 +54,13 @@ void MainWindow::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void MainWindow::paintEvent(QPaintEvent *ev)
+{
+    QPainter painter(this);
+
+    painter.drawLine(10,10,100,100);
 }
 
 void MainWindow::RunRayTracer(QStringList arguments)

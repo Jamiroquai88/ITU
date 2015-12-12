@@ -14,10 +14,18 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    renderedwindow.cpp
+    renderedwindow.cpp \
+    objects.cpp
 
 HEADERS  += mainwindow.h \
-    renderedwindow.h
+    renderedwindow.h \
+    objects.h
 
 FORMS    += mainwindow.ui \
     renderedwindow.ui
+
+OTHER_FILES += \
+    new.jpg
+
+RESOURCES += \
+    imgs.qrc

@@ -11,8 +11,13 @@
 #include <QProgressDialog>
 #include <QThread>
 #include <QInputDialog>
+#include <QtGui>
+#include <QtCore>
+
+#include <vector>
 
 #include "renderedwindow.h"
+#include "objects.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,6 +33,8 @@ public:
 
 protected:
     void changeEvent(QEvent *e);
+    void paintEvent(QPaintEvent *ev);
+
 
 private slots:
     void on_actionExit_triggered();
@@ -51,6 +58,8 @@ private:
     QFileDialog *m_pfileDialog;
     QApplication *m_papp;
     QStringList m_arg;
+    //vector<Cube> objects;
+    Cube *cube;
 
     RenderedWindow *m_prenderedWin;
 
