@@ -12,15 +12,17 @@
 #include <QInputDialog>
 #include <QtGui>
 #include <QtCore>
-
 #include <vector>
-
+#include <sstream>
 #include "renderedwindow.h"
-#include "objects.h"
+#include "ui_mainwindow.h"
 
 namespace Ui {
 class MainWindow;
 }
+
+class Object;
+class Light;
 
 class MainWindow : public QMainWindow
 {
@@ -53,8 +55,21 @@ private slots:
     void s_addCube();
     void s_addPlane();
 
-private:
+    void on_sizeSlider_valueChanged(int value);
+
+    void on_colorBox_currentIndexChanged(const QString &arg1);
+
+    void on_nameEdit_textChanged();
+
+    void on_removeButton_clicked();
+
+    void on_reflSlider_valueChanged(int value);
+
+    void on_gammaSlider_valueChanged(int value);
+
+public:
     Ui::MainWindow *ui;
+private:
     QGraphicsScene *m_pimageScene;
     QString m_workDir;
     QFileDialog *m_pfileDialog;
@@ -64,14 +79,10 @@ private:
     QAction *addSphere;
     QAction *addPlane;
     //vector<Cube> objects;
-    Cube *cube;
-    Sphere *sphere;
-    Plain *plain;
+    Object *obj;
+    int m_objCount;
     Light *light;
-
     RenderedWindow *m_prenderedWin;
-
-private:
     void resizeEvent(QResizeEvent* event);
     void quit();
 };
