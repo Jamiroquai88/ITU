@@ -83,6 +83,10 @@ void Object::mousePressEvent(QGraphicsSceneMouseEvent *event)
     this->setSelected(true);
     m_ui->objectParams->show();
     m_ui->nameEdit->setText(m_name);
+    if(m_color.name()=="#000000") m_ui->colorBox->setCurrentIndex(0);
+    else if(m_color.name()=="#FF0000") m_ui->colorBox->setCurrentIndex(1);
+    else if(m_color.name()=="#00FF00") m_ui->colorBox->setCurrentIndex(2);
+    else if(m_color.name()=="#0000FF") m_ui->colorBox->setCurrentIndex(3);
     if(typeid(*this)==typeid(Light))
     {
         m_ui->sizeSlider->setValue(m_size);
@@ -92,7 +96,6 @@ void Object::mousePressEvent(QGraphicsSceneMouseEvent *event)
         m_ui->gammaSlider->hide();
         m_ui->reflLabel->hide();
         m_ui->reflSlider->hide();
-        m_ui->colorBox->setCurrentIndex(2);
     }
     else
     {
@@ -104,7 +107,6 @@ void Object::mousePressEvent(QGraphicsSceneMouseEvent *event)
         m_ui->gammaSlider->show();
         m_ui->reflLabel->show();
         m_ui->reflSlider->show();
-        m_ui->colorBox->setCurrentIndex(2);
     }
 
 
