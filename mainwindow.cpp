@@ -15,9 +15,6 @@ MainWindow::MainWindow(QWidget *parent, QApplication *app) :
     addCube->setStatusTip(tr("Add a cube to the scene"));
     connect(addCube, SIGNAL(triggered()), this, SLOT(s_addCube()));
 
-
-    m_pimageScene = new QGraphicsScene(0, 0, 650, 700);
-
     addSphere = new QAction(tr("&Add Sphere"), this);
     addSphere->setStatusTip(tr("Add a sphere to the scene"));
     connect(addSphere, SIGNAL(triggered()), this, SLOT(s_addSphere()));
@@ -139,6 +136,10 @@ void MainWindow::on_objectButton_clicked()
 void MainWindow::on_lightButton_clicked()
 {
     /** Add Light Button Event **/
+    QPoint point(10, 10);
+    light = new Light();
+    light->setValues(50, point);
+    m_pimageScene->addItem(light);
 
 }
 

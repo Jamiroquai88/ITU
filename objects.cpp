@@ -25,8 +25,8 @@ void Object::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::mouseMoveEvent(event);
 
     // Check the bounds of scene.
-    /*if (x() < 0) {
-        setPos(0, y());
+    /*if (x() < -(scene()->width())) {
+        setPos(0, y() - scene()->height());
     }
     else if (x() + boundingRect().right() > scene()->width()) {
         setPos(scene()->width() - boundingRect().width(), y());
@@ -190,13 +190,23 @@ void Light::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     m_pen.setColor(m_color);
     painter->setPen(m_pen);
 
-    int size = m_size / 10;
+    int size = m_size / 6;
+    int halfSize = size / qSqrt(2);
+    halfSize *= 1.6;
 
     painter->drawEllipse(m_center.x() - size, m_center.y() - size, size * 2, size * 2);
+    painter->drawLine(m_center.x() - (size * 1.5), m_center.y(), m_center.x() - (size * 2.5), m_center.y());
+    painter->drawLine(m_center.x() + (size * 1.5), m_center.y(), m_center.x() + (size * 2.5), m_center.y());
+    painter->drawLine(m_center.x(), m_center.y() + (size * 1.5), m_center.x(), m_center.y() + (size * 2.5));
+    painter->drawLine(m_center.x(), m_center.y() - (size * 1.5), m_center.x(), m_center.y() - (size * 2.5));
+    painter->drawLine(m_center.x() - size, m_center.y() + halfSize, m_center.x() - (size * 2), m_center.y() + (size * 2));
+    painter->drawLine(m_center.x() - size, m_center.y() - halfSize, m_center.x() - (size * 2), m_center.y() - (size * 2));
+    painter->drawLine(m_center.x() + size, m_center.y() - halfSize, m_center.x() + (size * 2), m_center.y() - (size * 2));
+    painter->drawLine(m_center.x() + size, m_center.y() + halfSize, m_center.x() + (size * 2), m_center.y() + (size * 2));
 }
 
 QRectF Light::boundingRect() const
 {
-    int size = m_size / 10;
+    int size = m_size / 6;
     return QRectF(m_center.x() - size,m_center.y() - size, size*2, size*2);
 }

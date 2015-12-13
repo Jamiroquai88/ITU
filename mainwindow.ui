@@ -85,21 +85,9 @@
           </item>
           <item>
            <widget class="QGraphicsView" name="graphicsView">
-<<<<<<< HEAD
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-=======
             <property name="minimumSize">
              <size>
               <width>175</width>
->>>>>>> 7f68c128d31256c125e3e7565d1337aea3c2b674
               <height>0</height>
              </size>
             </property>
