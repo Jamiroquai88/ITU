@@ -49,6 +49,9 @@ private slots:
     void on_lightButton_clicked();
 
     void on_resetButton_clicked();
+    void s_addSphere();
+    void s_addCube();
+    void s_addPlane();
 
 private:
     Ui::MainWindow *ui;
@@ -56,6 +59,10 @@ private:
     QString m_workDir;
     QFileDialog *m_pfileDialog;
     QApplication *m_papp;
+    QMenu *m_addMenu;
+    QAction *addCube;
+    QAction *addSphere;
+    QAction *addPlane;
     //vector<Cube> objects;
     Cube *cube;
     Sphere *sphere;
