@@ -10,6 +10,7 @@
 #include <QPainter>
 #include <QDebug>
 #include <QtMath>
+#include <QList>
 
 using namespace std;
 
@@ -52,6 +53,10 @@ public:
     QRectF boundingRect() const;
 };
 
-
+class Light : public Object {
+public:
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QRectF boundingRect() const;
+};
 
 #endif // OBJECTS_H

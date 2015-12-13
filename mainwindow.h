@@ -60,6 +60,7 @@ private:
     Cube *cube;
     Sphere *sphere;
     Plain *plain;
+    Light *light;
 
     RenderedWindow *m_prenderedWin;
 

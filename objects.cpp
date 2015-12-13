@@ -18,7 +18,6 @@ Object::Object()
 void Object::changeColour(QColor new_color)
 {
     m_color = new_color;
-    return;
 }
 
 void Object::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
@@ -43,14 +42,18 @@ void Object::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void Object::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    if(this->isSelected()) {
-        this->setSelected(false);
-        m_color.setNamedColor("#000"); // Unselected -> black color.
+    QList<QGraphicsItem *> items(scene()->selectedItems());
+    QList<QGraphicsItem *>::iterator it;
+
+    QColor tmpColor("black");
+
+    for(it = items.begin(); it != items.end(); ++it) {
+       static_cast<Object *>(*it)->changeColour(tmpColor);
     }
-    else {
-        this->setSelected(true);
-        m_color.setNamedColor("#FF0"); // Selected -> yellow color.
-    }
+    scene()->clearSelection();
+
+    this->setSelected(true);
+    m_color.setNamedColor("#FF0"); // Selected -> yellow color.
 
     update();
 
@@ -180,4 +183,20 @@ void Plain::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 QRectF Plain::boundingRect() const
 {
     return QRectF(m_center.x() - (m_size * 3),m_center.y() - m_size, m_size*6, m_size*2);
+}
+
+void Light::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    m_pen.setColor(m_color);
+    painter->setPen(m_pen);
+
+    int size = m_size / 10;
+
+    painter->drawEllipse(m_center.x() - size, m_center.y() - size, size * 2, size * 2);
+}
+
+QRectF Light::boundingRect() const
+{
+    int size = m_size / 10;
+    return QRectF(m_center.x() - size,m_center.y() - size, size*2, size*2);
 }

@@ -13,10 +13,9 @@ MainWindow::MainWindow(QWidget *parent, QApplication *app) :
 
     m_prenderedWin = new RenderedWindow;
 
-    m_pimageScene = new QGraphicsScene();
+    m_pimageScene = new QGraphicsScene(0, 0, 650, 700);
 
-    //QPixmap image(":/imgs/new.jpg");
-    QPoint point(10, 10);
+    QPoint point(m_pimageScene->height() / 2, m_pimageScene->width() / 2);
     //objects.push_back(new Cube(20,point));
     cube = new Cube();
     cube->setValues(2, point);
@@ -31,9 +30,13 @@ MainWindow::MainWindow(QWidget *parent, QApplication *app) :
     //point.setY(50);
     plain->setValues(2, point);
 
+    light = new Light();
+    light->setValues(10, point);
+
     m_pimageScene->addItem(cube);
     m_pimageScene->addItem(sphere);
     m_pimageScene->addItem(plain);
+    m_pimageScene->addItem(light);
 
 
     ui->graphicsView->setScene(m_pimageScene);
