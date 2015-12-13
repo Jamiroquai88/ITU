@@ -56,6 +56,12 @@
             </item>
             <item>
              <widget class="QPushButton" name="objectButton">
+              <property name="minimumSize">
+               <size>
+                <width>175</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="text">
                <string>Add Object</string>
               </property>
@@ -79,6 +85,7 @@
           </item>
           <item>
            <widget class="QGraphicsView" name="graphicsView">
+<<<<<<< HEAD
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -88,6 +95,11 @@
             <property name="minimumSize">
              <size>
               <width>0</width>
+=======
+            <property name="minimumSize">
+             <size>
+              <width>175</width>
+>>>>>>> 7f68c128d31256c125e3e7565d1337aea3c2b674
               <height>0</height>
              </size>
             </property>
@@ -258,23 +270,12 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionNew_Scene"/>
-    <addaction name="actionLoad_Scene"/>
-    <addaction name="actionSave_Scene"/>
-    <addaction name="actionSave_Scene_As"/>
-    <addaction name="actionExit"/>
-   </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
      <string>Settings</string>
     </property>
     <addaction name="actionRender_Settings"/>
    </widget>
-   <addaction name="menuFile"/>
    <addaction name="menuSettings"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
