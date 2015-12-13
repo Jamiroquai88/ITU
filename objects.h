@@ -36,6 +36,7 @@ public:
     Object();
     void setValues(int nsize, QPoint nm_center,  Ui::MainWindow *ui, string name);
     void changeColour(QColor new_color);
+    QColor getColor();
     void setSize(int val);
     void setName(QString name);
     void setGamma(int val);
@@ -69,7 +70,7 @@ public:
 
 class Light : public Object {
 private:
-    int lightPower;
+    int m_lightPower;
 public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void setPower(int val);

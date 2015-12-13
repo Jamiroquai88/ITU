@@ -139,9 +139,13 @@ void MainWindow::on_objectButton_clicked()
 void MainWindow::on_lightButton_clicked()
 {
     /** Add Light Button Event **/
+    std::ostringstream oss;
+    oss << "light_" << m_lightCount;
+    ++m_lightCount;
+
     QPoint point(10, 10);
     light = new Light();
-    light->setValues(50, point);
+    light->setValues(50, point, ui, oss.str());
     m_pimageScene->addItem(light);
 
 }
@@ -196,9 +200,9 @@ void MainWindow::on_sizeSlider_valueChanged(int value)
     QList<QGraphicsItem *>::iterator it;
 
    for(it = items.begin(); it != items.end(); ++it) {
-        if(typeid(static_cast<Object *>(*it))==typeid(Sphere))
+        if(typeid(*(static_cast<Object *>(*it)))==typeid(Light))
         {
-           //static_cast<Object *>(*it)->setL
+           static_cast<Light *>(*it)->setPower(value);
         }
         else
         {

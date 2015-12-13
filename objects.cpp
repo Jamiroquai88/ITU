@@ -23,6 +23,11 @@ void Object::changeColour(QColor new_color)
     m_color = new_color;
 }
 
+QColor Object::getColor()
+{
+    return m_color;
+}
+
 void Object::setSize(int val)
 {
     m_size = val;
@@ -67,18 +72,18 @@ void Object::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     QList<QGraphicsItem *> items(scene()->selectedItems());
     QList<QGraphicsItem *>::iterator it;
-
-    QColor tmpColor("black");
+    Object *object;
 
     for(it = items.begin(); it != items.end(); ++it) {
-       static_cast<Object *>(*it)->changeColour(tmpColor);
+       object = static_cast<Object *>(*it);
+       object->changeColour(object->getColor());
     }
     scene()->clearSelection();
 
     this->setSelected(true);
     m_ui->objectParams->show();
     m_ui->nameEdit->setText(m_name);
-    if(typeid(*this)==typeid(Sphere))
+    if(typeid(*this)==typeid(Light))
     {
         m_ui->sizeSlider->setValue(m_size);
         m_ui->sizeLabel->setText("Light Power");
@@ -100,7 +105,6 @@ void Object::mousePressEvent(QGraphicsSceneMouseEvent *event)
         m_ui->reflLabel->show();
         m_ui->reflSlider->show();
         m_ui->colorBox->setCurrentIndex(2);
-        m_color.setNamedColor("#FF0"); // Selected -> yellow color.
     }
 
 
@@ -157,7 +161,12 @@ void Cube::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     p.setY(m_center.y() + (m_size * 1.5));
     m_points[7] = p;
 
-    m_pen.setColor(m_color);
+    if(this->isSelected()) {
+        m_pen.setColor(QColor("yellow"));
+    }
+    else {
+        m_pen.setColor(m_color);
+    }
     painter->setPen(m_pen);
 
     painter->drawLine(m_points[0], m_points[1]);
@@ -182,7 +191,12 @@ QRectF Cube::boundingRect() const
 
 void Sphere::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    m_pen.setColor(m_color);
+    if(this->isSelected()) {
+        m_pen.setColor(QColor("yellow"));
+    }
+    else {
+        m_pen.setColor(m_color);
+    }
     painter->setPen(m_pen);
 
     int minorAxis = m_size / 3;
@@ -221,7 +235,12 @@ void Plain::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     p.setY(m_center.y() - m_size);
     m_points[3] = p;
 
-    m_pen.setColor(m_color);
+    if(this->isSelected()) {
+        m_pen.setColor(QColor("yellow"));
+    }
+    else {
+        m_pen.setColor(m_color);
+    }
     painter->setPen(m_pen);
 
     painter->drawLine(m_points[0], m_points[1]);
@@ -237,7 +256,12 @@ QRectF Plain::boundingRect() const
 
 void Light::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    m_pen.setColor(m_color);
+    if(this->isSelected()) {
+        m_pen.setColor(QColor("yellow"));
+    }
+    else {
+        m_pen.setColor(m_color);
+    }
     painter->setPen(m_pen);
 
     int size = m_size / 6;
@@ -253,6 +277,11 @@ void Light::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->drawLine(m_center.x() - size, m_center.y() - halfSize, m_center.x() - (size * 2), m_center.y() - (size * 2));
     painter->drawLine(m_center.x() + size, m_center.y() - halfSize, m_center.x() + (size * 2), m_center.y() - (size * 2));
     painter->drawLine(m_center.x() + size, m_center.y() + halfSize, m_center.x() + (size * 2), m_center.y() + (size * 2));
+}
+
+void Light::setPower(int val)
+{
+    m_lightPower = val;
 }
 
 QRectF Light::boundingRect() const

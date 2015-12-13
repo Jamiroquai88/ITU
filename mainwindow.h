@@ -81,6 +81,7 @@ private:
     //vector<Cube> objects;
     Object *obj;
     int m_objCount;
+    int m_lightCount;
     Light *light;
     RenderedWindow *m_prenderedWin;
     void resizeEvent(QResizeEvent* event);
