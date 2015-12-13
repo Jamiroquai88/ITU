@@ -1,11 +1,12 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "objects.h"
 
 MainWindow::MainWindow(QWidget *parent, QApplication *app) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     m_pimageScene(0),
-    m_papp(0)
+    m_papp(0),
+    m_objCount(0)
 {
     ui->setupUi(this);
     QMainWindow::setWindowTitle("Ray Tracer");
@@ -23,12 +24,14 @@ MainWindow::MainWindow(QWidget *parent, QApplication *app) :
     addPlane->setStatusTip(tr("Add a plane to the scene"));
     connect(addPlane, SIGNAL(triggered()), this, SLOT(s_addPlane()));
 
-    m_addMenu = menuBar()->addMenu(tr("&Add"));
+    m_addMenu = new QMenu;
     m_addMenu->addAction(addCube);
     m_addMenu->addAction(addSphere);
     m_addMenu->addAction(addPlane);
 
     ui->objectButton->setMenu(m_addMenu);
+
+    ui->objectParams->hide();
 
     m_prenderedWin = new RenderedWindow;
 
@@ -153,26 +156,110 @@ void MainWindow::on_resetButton_clicked()
 
 void MainWindow::s_addCube()
 {
+    std::ostringstream oss;
+    oss << "object_" << m_objCount;
+
+    m_objCount++;
     QPoint point(10, 10);
-    cube = new Cube();
-    cube->setValues(50, point);
-    m_pimageScene->addItem(cube);
+    obj = new Cube();
+    obj->setValues(50, point, ui,  oss.str());
+    m_pimageScene->addItem(obj);
     return;
 }
 
 void MainWindow::s_addSphere()
 {
+    std::ostringstream oss;
+    oss << "object_" << m_objCount;
+    m_objCount++;
     QPoint point(10, 10);
-    sphere = new Sphere();
-    sphere->setValues(50, point);
-    m_pimageScene->addItem(sphere);
+    obj = new Sphere();
+    obj->setValues(50, point, ui, oss.str());
+    m_pimageScene->addItem(obj);
     return;
 }
 void MainWindow::s_addPlane()
 {
+    std::ostringstream oss;
+    oss << "object_" << m_objCount;
+    m_objCount++;
     QPoint point(10, 10);
-    plain = new Plain();
-    plain->setValues(50, point);
-    m_pimageScene->addItem(plain);
+    obj = new Plain();
+    obj->setValues(50, point,  ui, oss.str());
+    m_pimageScene->addItem(obj);
     return;
+}
+
+void MainWindow::on_sizeSlider_valueChanged(int value)
+{
+    QList<QGraphicsItem *> items(m_pimageScene->selectedItems());
+    QList<QGraphicsItem *>::iterator it;
+
+   for(it = items.begin(); it != items.end(); ++it) {
+        if(typeid(static_cast<Object *>(*it))==typeid(Sphere))
+        {
+           //static_cast<Object *>(*it)->setL
+        }
+        else
+        {
+           static_cast<Object *>(*it)->setSize(value);
+        }
+   }
+   update();
+}
+
+void MainWindow::on_colorBox_currentIndexChanged(const QString &arg1)
+{
+    QList<QGraphicsItem *> items(m_pimageScene->selectedItems());
+    QList<QGraphicsItem *>::iterator it;
+
+   QColor tmpColor(arg1);
+
+   for(it = items.begin(); it != items.end(); ++it) {
+       static_cast<Object *>(*it)->changeColour(tmpColor);
+    }
+   update();
+}
+
+void MainWindow::on_nameEdit_textChanged()
+{
+    QList<QGraphicsItem *> items(m_pimageScene->selectedItems());
+    QList<QGraphicsItem *>::iterator it;
+
+   for(it = items.begin(); it != items.end(); ++it) {
+       static_cast<Object *>(*it)->setName(ui->nameEdit->toPlainText());
+    }
+
+}
+
+void MainWindow::on_removeButton_clicked()
+{
+    QList<QGraphicsItem *> items(m_pimageScene->selectedItems());
+    QList<QGraphicsItem *>::iterator it;
+
+   for(it = items.begin(); it != items.end(); ++it) {
+       m_pimageScene->removeItem(static_cast<Object *>(*it));
+    }
+   ui->objectParams->hide();
+   update();
+}
+
+void MainWindow::on_reflSlider_valueChanged(int value)
+{
+    QList<QGraphicsItem *> items(m_pimageScene->selectedItems());
+    QList<QGraphicsItem *>::iterator it;
+
+   for(it = items.begin(); it != items.end(); ++it) {
+       static_cast<Object *>(*it)->setRefl(value);
+    }
+}
+
+void MainWindow::on_gammaSlider_valueChanged(int value)
+{
+    QList<QGraphicsItem *> items(m_pimageScene->selectedItems());
+    QList<QGraphicsItem *>::iterator it;
+
+   for(it = items.begin(); it != items.end(); ++it) {
+       static_cast<Object *>(*it)->setGamma(value);
+    }
 }

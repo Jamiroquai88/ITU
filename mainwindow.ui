@@ -113,11 +113,11 @@
       <item>
        <layout class="QVBoxLayout" name="parametersLayout" stretch="0">
         <item>
-         <widget class="QGroupBox" name="groupBox">
+         <widget class="QGroupBox" name="objectParams">
           <property name="title">
            <string>Object</string>
           </property>
-          <widget class="QTextEdit" name="textEdit">
+          <widget class="QTextEdit" name="nameEdit">
            <property name="geometry">
             <rect>
              <x>20</x>
@@ -140,7 +140,7 @@
             <string>Name</string>
            </property>
           </widget>
-          <widget class="QSlider" name="horizontalSlider">
+          <widget class="QSlider" name="sizeSlider">
            <property name="geometry">
             <rect>
              <x>20</x>
@@ -153,7 +153,7 @@
             <enum>Qt::Horizontal</enum>
            </property>
           </widget>
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="sizeLabel">
            <property name="geometry">
             <rect>
              <x>20</x>
@@ -166,7 +166,7 @@
             <string>Size</string>
            </property>
           </widget>
-          <widget class="QComboBox" name="comboBox">
+          <widget class="QComboBox" name="colorBox">
            <property name="geometry">
             <rect>
              <x>20</x>
@@ -175,6 +175,26 @@
              <height>21</height>
             </rect>
            </property>
+           <item>
+            <property name="text">
+             <string>black</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>red</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>green</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>blue</string>
+            </property>
+           </item>
           </widget>
           <widget class="QLabel" name="label_3">
            <property name="geometry">
@@ -189,7 +209,7 @@
             <string>Color</string>
            </property>
           </widget>
-          <widget class="QLabel" name="label_4">
+          <widget class="QLabel" name="reflLabel">
            <property name="geometry">
             <rect>
              <x>20</x>
@@ -202,7 +222,7 @@
             <string>Reflection</string>
            </property>
           </widget>
-          <widget class="QSlider" name="horizontalSlider_2">
+          <widget class="QSlider" name="reflSlider">
            <property name="geometry">
             <rect>
              <x>20</x>
@@ -215,7 +235,7 @@
             <enum>Qt::Horizontal</enum>
            </property>
           </widget>
-          <widget class="QSlider" name="horizontalSlider_3">
+          <widget class="QSlider" name="gammaSlider">
            <property name="geometry">
             <rect>
              <x>20</x>
@@ -228,7 +248,7 @@
             <enum>Qt::Horizontal</enum>
            </property>
           </widget>
-          <widget class="QLabel" name="label_5">
+          <widget class="QLabel" name="gammaLabel">
            <property name="geometry">
             <rect>
              <x>20</x>
@@ -239,6 +259,19 @@
            </property>
            <property name="text">
             <string>Gamma</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="removeButton">
+           <property name="geometry">
+            <rect>
+             <x>70</x>
+             <y>350</y>
+             <width>80</width>
+             <height>23</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Remove</string>
            </property>
           </widget>
          </widget>
@@ -255,7 +288,7 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSettings">

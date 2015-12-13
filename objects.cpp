@@ -1,9 +1,12 @@
 #include "objects.h"
+#include "mainwindow.h"
 
-void Object::setValues(int nsize, QPoint ncenter)
+void Object::setValues(int nsize, QPoint ncenter,  Ui::MainWindow *ui, string name)
 {
     m_size = nsize;
     m_center = ncenter;
+    m_ui = ui;
+    m_name = QString::fromStdString(name);;
 }
 
 Object::Object()
@@ -18,6 +21,26 @@ Object::Object()
 void Object::changeColour(QColor new_color)
 {
     m_color = new_color;
+}
+
+void Object::setSize(int val)
+{
+    m_size = val;
+}
+
+void Object::setName(QString name)
+{
+    m_name = name;
+}
+
+void Object::setGamma(int val)
+{
+    m_gamma = val;
+}
+
+void Object::setRefl(int val)
+{
+    m_refl = val;
 }
 
 void Object::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
@@ -53,7 +76,34 @@ void Object::mousePressEvent(QGraphicsSceneMouseEvent *event)
     scene()->clearSelection();
 
     this->setSelected(true);
-    m_color.setNamedColor("#FF0"); // Selected -> yellow color.
+    m_ui->objectParams->show();
+    m_ui->nameEdit->setText(m_name);
+    if(typeid(*this)==typeid(Sphere))
+    {
+        m_ui->sizeSlider->setValue(m_size);
+        m_ui->sizeLabel->setText("Light Power");
+        m_ui->sizeSlider->setValue(m_size);
+        m_ui->gammaLabel->hide();
+        m_ui->gammaSlider->hide();
+        m_ui->reflLabel->hide();
+        m_ui->reflSlider->hide();
+        m_ui->colorBox->setCurrentIndex(2);
+    }
+    else
+    {
+        m_ui->sizeLabel->setText("Size");
+        m_ui->sizeSlider->setValue(m_size);
+        m_ui->gammaSlider->setValue(m_gamma);
+        m_ui->reflSlider->setValue(m_refl);
+        m_ui->gammaLabel->show();
+        m_ui->gammaSlider->show();
+        m_ui->reflLabel->show();
+        m_ui->reflSlider->show();
+        m_ui->colorBox->setCurrentIndex(2);
+        m_color.setNamedColor("#FF0"); // Selected -> yellow color.
+    }
+
+
 
     update();
 
