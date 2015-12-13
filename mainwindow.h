@@ -6,7 +6,6 @@
 #include <QDebug>
 #include <QDir>
 #include <QProcess>
-#include <QGraphicsScene>
 #include <QFileDialog>
 #include <QProgressDialog>
 #include <QThread>
@@ -30,6 +29,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0, QApplication *app = 0);
     ~MainWindow();
+    QGraphicsScene *getScene();
 
 protected:
     void changeEvent(QEvent *e);
@@ -52,21 +52,19 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QProcess *m_prayTracer;
     QGraphicsScene *m_pimageScene;
     QString m_workDir;
     QFileDialog *m_pfileDialog;
     QApplication *m_papp;
-    QStringList m_arg;
     //vector<Cube> objects;
     Cube *cube;
+    Sphere *sphere;
+    Plain *plain;
 
     RenderedWindow *m_prenderedWin;
 
 private:
-    void RunRayTracer(QStringList arguments);
     void resizeEvent(QResizeEvent* event);
-    QStringList *CreateRayTracerArguments(QString scene_file, QString out);
     void quit();
 };
 

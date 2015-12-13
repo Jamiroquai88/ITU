@@ -4,7 +4,6 @@
 MainWindow::MainWindow(QWidget *parent, QApplication *app) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    m_prayTracer(0),
     m_pimageScene(0),
     m_papp(0)
 {
@@ -14,20 +13,34 @@ MainWindow::MainWindow(QWidget *parent, QApplication *app) :
 
     m_prenderedWin = new RenderedWindow;
 
-    m_prayTracer = new QProcess(this);
     m_pimageScene = new QGraphicsScene();
 
     //QPixmap image(":/imgs/new.jpg");
-    QPoint point(100, 100);
+    QPoint point(10, 10);
     //objects.push_back(new Cube(20,point));
     cube = new Cube();
-    cube->setValues(20, point);
+    cube->setValues(2, point);
+
+    sphere = new Sphere();
+    //point.setX(20);
+   // point.setY(20);
+    sphere->setValues(4, point);
+
+    plain = new Plain();
+   // point.setX(50);
+    //point.setY(50);
+    plain->setValues(2, point);
 
     m_pimageScene->addItem(cube);
+    m_pimageScene->addItem(sphere);
+    m_pimageScene->addItem(plain);
 
 
     ui->graphicsView->setScene(m_pimageScene);
-    ui->graphicsView->fitInView(m_pimageScene->itemsBoundingRect() ,Qt::KeepAspectRatio);
+    ui->graphicsView->fitInView(m_pimageScene->itemsBoundingRect(), Qt::KeepAspectRatio);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
    // ui->graphicsView->show();
     QDir *dir = new QDir;
@@ -42,6 +55,11 @@ MainWindow::MainWindow(QWidget *parent, QApplication *app) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+QGraphicsScene *MainWindow::getScene()
+{
+    return m_pimageScene;
 }
 
 void MainWindow::changeEvent(QEvent *e)
@@ -63,14 +81,6 @@ void MainWindow::paintEvent(QPaintEvent *ev)
     painter.drawLine(10,10,100,100);
 }
 
-void MainWindow::RunRayTracer(QStringList arguments)
-{
-    QString raytracer = m_workDir + "/raytracer/release-bin/ray-tracer.exe";
-    m_prayTracer->start(raytracer, arguments);
-    m_prayTracer->waitForFinished();
-    qDebug() << "finished";
-
-}
 
 void MainWindow::on_actionExit_triggered()
 {
@@ -83,18 +93,6 @@ void MainWindow::resizeEvent(QResizeEvent* event)
     ui->graphicsView->fitInView(m_pimageScene->itemsBoundingRect() ,Qt::KeepAspectRatio);
 }
 
-/*
-QStringList *MainWindow::CreateRayTracerArguments(QString scene_file, QString out)
-{
-    QStringList *list = new QStringList;
-    QString arg1 = "--scene=" + scene_file;
-    QString arg2 = "--resolution_x=" + QString::number(ui->graphicsView->width());
-    QString arg3 = "--resolution_y=" + QString::number(ui->graphicsView->height());
-    QString arg4 = "--output=" + mworkDir + "/" + out;
-    *list << arg1 << arg2 << arg3 << arg4;
-    return list;
-}
-*/
 
 void MainWindow::on_actionNew_Scene_triggered()
 {
@@ -146,5 +144,7 @@ void MainWindow::on_lightButton_clicked()
 void MainWindow::on_resetButton_clicked()
 {
     /** Reset Scene Button Event **/
+
+    m_pimageScene->clear();
 
 }
