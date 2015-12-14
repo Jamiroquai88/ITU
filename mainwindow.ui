@@ -291,12 +291,23 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+       <property name="title">
+        <string>File</string>
+       </property>
+       <addaction name="actionNew_Scene"/>
+       <addaction name="actionLoad_Scene"/>
+       <addaction name="actionSave_Scene"/>
+       <addaction name="actionSave_Scene_As"/>
+       <addaction name="actionExit"/>
+   </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
      <string>Settings</string>
     </property>
     <addaction name="actionRender_Settings"/>
    </widget>
+   <addaction name="menuFile"/>
    <addaction name="menuSettings"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
