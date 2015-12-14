@@ -32,6 +32,9 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(216, 216, 216);</string>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout" stretch="3,0,1">
@@ -49,6 +52,10 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(58, 58, 58);
+color: rgb(255, 255, 255);</string>
+              </property>
               <property name="text">
                <string>Render</string>
               </property>
@@ -62,6 +69,10 @@
                 <height>0</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(58, 58, 58);
+color: rgb(255, 255, 255);</string>
+              </property>
               <property name="text">
                <string>Add Object</string>
               </property>
@@ -69,6 +80,10 @@
             </item>
             <item>
              <widget class="QPushButton" name="lightButton">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(58, 58, 58);
+color: rgb(255, 255, 255);</string>
+              </property>
               <property name="text">
                <string>Add Light</string>
               </property>
@@ -76,6 +91,10 @@
             </item>
             <item>
              <widget class="QPushButton" name="resetButton">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(58, 58, 58);
+color: rgb(255, 255, 255);</string>
+              </property>
               <property name="text">
                <string>Reset Scene</string>
               </property>
@@ -90,6 +109,9 @@
               <width>175</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(57, 57, 57);</string>
             </property>
            </widget>
           </item>
@@ -115,7 +137,7 @@
         <item>
          <widget class="QGroupBox" name="objectParams">
           <property name="title">
-           <string>Object</string>
+           <string/>
           </property>
           <widget class="QTextEdit" name="nameEdit">
            <property name="geometry">
@@ -288,18 +310,18 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
-       <property name="title">
-        <string>File</string>
-       </property>
-       <addaction name="actionNew_Scene"/>
-       <addaction name="actionLoad_Scene"/>
-       <addaction name="actionSave_Scene"/>
-       <addaction name="actionSave_Scene_As"/>
-       <addaction name="actionExit"/>
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew_Scene"/>
+    <addaction name="actionLoad_Scene"/>
+    <addaction name="actionSave_Scene"/>
+    <addaction name="actionSave_Scene_As"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
