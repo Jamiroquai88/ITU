@@ -36,10 +36,10 @@ MainWindow::MainWindow(QWidget *parent, QApplication *app) :
     m_prenderedWin = new RenderedWindow;
 
     m_pimageScene = new QGraphicsScene();
-    m_pimageScene->setSceneRect(0,0,450,450);
+    m_pimageScene->setSceneRect(0,0,45000,4500);
 
     ui->graphicsView->setScene(m_pimageScene);
-    //ui->graphicsView->fitInView(m_pimageScene->itemsBoundingRect(), Qt::KeepAspectRatio);
+    ui->graphicsView->fitInView(m_pimageScene->itemsBoundingRect(), Qt::KeepAspectRatio);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
