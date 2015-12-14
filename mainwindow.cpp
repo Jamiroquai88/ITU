@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent, QApplication *app) :
 {
     ui->setupUi(this);
     QMainWindow::setWindowTitle("Ray Tracer");
-    this->setStyleSheet("background-color: #393939;");
 
     addCube = new QAction(tr("&Add Cube"), this);
     addCube->setStatusTip(tr("Add a cube to the scene"));
@@ -98,30 +97,13 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 
 void MainWindow::on_actionNew_Scene_triggered()
 {
+    on_resetButton_clicked();
 
-    //QStringList arguments;
-    //RunRayTracer(arguments);
-
-    QPixmap image("./basic.png");
-
-    m_pimageScene->addPixmap(image);
-    ui->graphicsView->setScene(m_pimageScene);
-    ui->graphicsView->fitInView(m_pimageScene->itemsBoundingRect() ,Qt::KeepAspectRatio);
 }
 
 void MainWindow::on_actionLoad_Scene_triggered()
 {
     QStringList fileNames = m_pfileDialog->getOpenFileNames(this, tr("Open File"),m_workDir ,tr("XML Files (*.xml)"));
-    //qDebug() << fileNames[0];
-    if(fileNames.count() != 0)
-    {
-        /*QStringList *arg = CreateRayTracerArguments(fileNames[0], "out.png");
-        RunRayTracer(*arg);
-        QPixmap image("out.png");
-        m_pimageScene->addPixmap(image);
-        ui->graphicsView->setScene(m_pimageScene);
-        ui->graphicsView->fitInView(m_pimageScene->itemsBoundingRect() ,Qt::KeepAspectRatio);
-    */}
 }
 
 void MainWindow::on_renderButton_clicked()
