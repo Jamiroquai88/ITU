@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent, QApplication *app) :
     ui->setupUi(this);
     QMainWindow::setWindowTitle("Ray Tracer");
 
+    m_colorDialog = new QColorDialog;
+
     addCube = new QAction(tr("&Add Cube"), this);
     addCube->setStatusTip(tr("Add a cube to the scene"));
     connect(addCube, SIGNAL(triggered()), this, SLOT(s_addCube()));
@@ -268,11 +270,9 @@ void MainWindow::on_actionSave_Scene_As_triggered()
 
 void MainWindow::on_actionRender_Settings_triggered()
 {
-    QColorDialog *dialog = new QColorDialog;
-    dialog->setWindowFlags(Qt::Widget);
-    dialog->show();
-    QString color = "background-color: " + dialog->getColor().name() + ";";
+    m_colorDialog->show();
+    QString color = "background-color: " + m_colorDialog->getColor().name() + ";";
     ui->graphicsView->setStyleSheet(color);
-    dialog->close();
+    m_colorDialog->close();
     return;
 }

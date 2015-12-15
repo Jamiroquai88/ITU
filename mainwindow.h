@@ -13,6 +13,7 @@
 #include <QtGui>
 #include <QtCore>
 #include <vector>
+#include <QColorDialog>
 #include <sstream>
 #include "renderedwindow.h"
 #include "ui_mainwindow.h"
@@ -90,6 +91,8 @@ private:
     int m_lightCount;
     Light *light;
     RenderedWindow *m_prenderedWin;
+    QColorDialog *m_colorDialog;
+
     void resizeEvent(QResizeEvent* event);
     void quit();
 };
