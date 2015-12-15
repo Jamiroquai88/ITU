@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "objects.h"
+#include <QColorDialog>
 
 MainWindow::MainWindow(QWidget *parent, QApplication *app) :
     QMainWindow(parent),
@@ -249,4 +250,29 @@ void MainWindow::on_gammaSlider_valueChanged(int value)
    for(it = items.begin(); it != items.end(); ++it) {
        static_cast<Object *>(*it)->setGamma(value);
     }
+}
+
+void MainWindow::on_actionSave_Scene_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),
+        m_workDir,
+        tr("Scenes (*.xml)"));
+}
+
+void MainWindow::on_actionSave_Scene_As_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),
+        m_workDir,
+        tr("Scenes (*.xml)"));
+}
+
+void MainWindow::on_actionRender_Settings_triggered()
+{
+    QColorDialog *dialog = new QColorDialog;
+    dialog->setWindowFlags(Qt::Widget);
+    dialog->show();
+    QString color = "background-color: " + dialog->getColor().name() + ";";
+    ui->graphicsView->setStyleSheet(color);
+    dialog->close();
+    return;
 }

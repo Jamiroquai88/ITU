@@ -67,6 +67,12 @@ private slots:
 
     void on_gammaSlider_valueChanged(int value);
 
+    void on_actionSave_Scene_triggered();
+
+    void on_actionSave_Scene_As_triggered();
+
+    void on_actionRender_Settings_triggered();
+
 public:
     Ui::MainWindow *ui;
 private:
