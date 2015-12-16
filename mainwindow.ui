@@ -111,7 +111,7 @@ color: rgb(255, 255, 255);</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(57, 57, 57);</string>
+             <string notr="true">background-color: rgb(80, 80, 80);</string>
             </property>
            </widget>
           </item>
@@ -136,6 +136,10 @@ color: rgb(255, 255, 255);</string>
        <layout class="QVBoxLayout" name="parametersLayout" stretch="0">
         <item>
          <widget class="QGroupBox" name="objectParams">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(48, 48, 48);
+color: rgb(255, 255, 255);</string>
+          </property>
           <property name="title">
            <string/>
           </property>
@@ -360,7 +364,7 @@ color: rgb(255, 255, 255);</string>
   </action>
   <action name="actionRender_Settings">
    <property name="text">
-    <string>Render Settings</string>
+    <string>Set background color</string>
    </property>
   </action>
  </widget>

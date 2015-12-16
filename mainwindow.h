@@ -13,6 +13,7 @@
 #include <QtGui>
 #include <QtCore>
 #include <vector>
+#include <QColorDialog>
 #include <sstream>
 #include "renderedwindow.h"
 #include "ui_mainwindow.h"
@@ -67,6 +68,12 @@ private slots:
 
     void on_gammaSlider_valueChanged(int value);
 
+    void on_actionSave_Scene_triggered();
+
+    void on_actionSave_Scene_As_triggered();
+
+    void on_actionRender_Settings_triggered();
+
 public:
     Ui::MainWindow *ui;
 private:
@@ -84,6 +91,8 @@ private:
     int m_lightCount;
     Light *light;
     RenderedWindow *m_prenderedWin;
+    QColorDialog *m_colorDialog;
+
     void resizeEvent(QResizeEvent* event);
     void quit();
 };

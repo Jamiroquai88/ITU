@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "objects.h"
+#include <QColorDialog>
 
 MainWindow::MainWindow(QWidget *parent, QApplication *app) :
     QMainWindow(parent),
@@ -10,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent, QApplication *app) :
 {
     ui->setupUi(this);
     QMainWindow::setWindowTitle("Ray Tracer");
+
+    m_colorDialog = new QColorDialog;
 
     addCube = new QAction(tr("&Add Cube"), this);
     addCube->setStatusTip(tr("Add a cube to the scene"));
@@ -250,4 +253,27 @@ void MainWindow::on_gammaSlider_valueChanged(int value)
    for(it = items.begin(); it != items.end(); ++it) {
        static_cast<Object *>(*it)->setGamma(value);
     }
+}
+
+void MainWindow::on_actionSave_Scene_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),
+        m_workDir,
+        tr("Scenes (*.xml)"));
+}
+
+void MainWindow::on_actionSave_Scene_As_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),
+        m_workDir,
+        tr("Scenes (*.xml)"));
+}
+
+void MainWindow::on_actionRender_Settings_triggered()
+{
+    m_colorDialog->show();
+    QString color = "background-color: " + m_colorDialog->getColor().name() + ";";
+    ui->graphicsView->setStyleSheet(color);
+    m_colorDialog->close();
+    return;
 }

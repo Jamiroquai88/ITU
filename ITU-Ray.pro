@@ -15,14 +15,17 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     renderedwindow.cpp \
-    objects.cpp
+    objects.cpp \
+    settingsdialog.cpp
 
 HEADERS  += mainwindow.h \
     renderedwindow.h \
-    objects.h
+    objects.h \
+    settingsdialog.h
 
 FORMS    += mainwindow.ui \
-    renderedwindow.ui
+    renderedwindow.ui \
+    settingsdialog.ui
 
 OTHER_FILES += \
     new.jpg

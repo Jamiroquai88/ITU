@@ -17,6 +17,17 @@
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(86, 86, 86);</string>
+       </property>
+       <property name="text">
+        <string>Save Image</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QGraphicsView" name="graphicsView"/>
      </item>
     </layout>
