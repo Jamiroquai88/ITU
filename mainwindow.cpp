@@ -137,6 +137,7 @@ void MainWindow::on_resetButton_clicked()
 {
     /** Reset Scene Button Event **/
 
+    ui->objectParams->hide();
     m_pimageScene->clear();
 
 }
