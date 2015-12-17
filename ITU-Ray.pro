@@ -30,4 +30,5 @@ FORMS    += mainwindow.ui \
 OTHER_FILES += \
     new.jpg
 
-RESOURCES +=
+RESOURCES += \
+    render.qrc

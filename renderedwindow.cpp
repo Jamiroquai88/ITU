@@ -21,7 +21,7 @@ RenderedWindow::RenderedWindow(QWidget *parent) :
     QDir *dir = new QDir;
     m_workDir = dir->currentPath();
 
-    QPixmap image("./basic.png");
+    QPixmap image(":/img/basic.png");
 
     m_pimageScene = new QGraphicsScene();
     m_pimageScene->addPixmap(image);
